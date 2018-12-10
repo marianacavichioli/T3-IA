@@ -9,7 +9,7 @@ Terceiro trabalho da disciplina de Inteligência Artificial
 Este  trabalho consta  da  execução  dos algoritmos  de aprendizado  supervisionado (árvore  de  decisão  e árvore de regressão) estudados na disciplina, com o uso de funções disponíveis em pacotes de R.
 
 # Datasets utilizados
-* Classificação: <a href="http://archive.ics.uci.edu/ml/datasets/Autistic+Spectrum+Disorder+Screening+Data+for+Children++">Autistic Spectrum Disorder Screening Data for Children </a>
+* Classificação: <a href="http://archive.ics.uci.edu/ml/datasets/Mammographic+Mass">Mammographic Mass Data Set</a>
 * Regressão: 
 
 # Bibliotecas
