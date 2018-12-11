@@ -1,4 +1,4 @@
-library('caret')
+﻿library('caret')
 library('rpart')
 library('rpart.plot')
 
@@ -26,5 +26,5 @@ regressao <- function() {
 
 resultado <- regressao()
 cat("Método de Regressão:\n")
-cat("Erro Quadrado Médio: ",resultado$eqm,"\n")
+cat("Erro Quadrático Médio: ",resultado$eqm,"\n")
 rpart.plot(resultado$modelo)
