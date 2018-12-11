@@ -1,36 +1,30 @@
-library('rpart')
 library('caret')
-source('metrics.R')
+library('rpart')
+library('rpart.plot')
 
 regressao <- function() {
-  dados <- read.table('slump_test.csv', header = TRUE, sep = ",")
+  dados <- read.table('slumpTest.csv', header = TRUE, sep = ",")
+
+  sample <- createDataPartition(dados$Strength, p = 0.75, list = FALSE)
+  treinamento <- dados[sample,]
+  teste <- dados[-sample,]
   
-  # Escolhe valores do dataframe aleatoriamente (sendo 75% para treinamento e 25% para teste)
-  sample <- createDataPartition(dados$Class, p = 0.75, list = FALSE)
-  
-  trainSample <- dados[sample,]
-  testSample <- dados[-sample,]
-  
-  # Constrói a árvore de regressão para o conjunto de treinamento dado
-  modelo <- rpart(formula = Class ~ No + Cement + Slag + Ash + Water + SP + Coarse + Fine + SLUMP + FLOW + Strength, 
-                 data = trainSample, method = "anova", model = TRUE)
+  modelo <- rpart(formula = Strength ~ No + Cement + Slag + Ash + Water + Sp + Coarse + Fine + Slump + Flow,
+                 data = treinamento, method = "anova", model = TRUE)
 
   
-  # Realiza a predição no conjunto de testes e plota o modelo
-  predicao <- predict(modelo, testSample, type = "vector")
+  predicao <- predict(modelo, teste, type = "vector")
 
-  # Calcula o erro quadrático médio a partir do vetor de predição e do vetor de dados reais
-  erro <- mse(testSample$Class, predicao)
-  
-  # Carrega os dados coletados em uma lista que será retornada
+  erro <- mean(teste$Strength - predicao)^2
+
   resultado <- list()
   resultado$modelo <- modelo
-  resultado$mse <- erroro
+  resultado$eqm <- erro
   
   return(resultado)
 }
 
 resultado <- regressao()
 cat("Método de Regressão:\n")
-cat("Erro Quadrado Médio: ",resultado$mse,"\n")
+cat("Erro Quadrado Médio: ",resultado$eqm,"\n")
 rpart.plot(resultado$modelo)

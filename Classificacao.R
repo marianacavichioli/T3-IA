@@ -6,16 +6,16 @@ classificacao <- function() {
   dados <- read.table('mammographic.csv', header = TRUE, sep = ",")
   sample <- createDataPartition(dados$Severity, p = 0.75, list = FALSE)
   
-  trainSample <- dados[sample,]
-  testSample <- dados[-sample,]
+  treinamento <- dados[sample,]
+  teste <- dados[-sample,]
   
   modelo <- rpart(formula = Severity ~ BI_RADS + Age + Shape + Margin + Density,
-                 data = trainSample, method = "class", control = rpart.control(minsplit = 1), 
+                 data = treinamento, method = "class", control = rpart.control(minsplit = 1), 
                  parms = list(split = "Information"), model = TRUE)
   
-  predicao <- predict(modelo, testSample, type = "class")
+  predicao <- predict(modelo, teste, type = "class")
   
-  matriz <- table(predicted=predicao, truth=testSample$Severity)
+  matriz <- table(predicted=predicao, truth=teste$Severity)
   acuracia <- sum(diag(matriz))/sum(matriz) 
   precisao <- sum(matriz[2,2])/sum(matriz[2,])
   
