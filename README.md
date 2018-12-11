@@ -10,7 +10,7 @@ Este  trabalho consta  da  execução  dos algoritmos  de aprendizado  supervisi
 
 # Datasets utilizados
 * Classificação: <a href="http://archive.ics.uci.edu/ml/datasets/Mammographic+Mass">Mammographic Mass Data Set</a>
-* Regressão: 
+* Regressão: <a href="http://archive.ics.uci.edu/ml/datasets/Concrete+Slump+Test">Concrete Slump Test Data Set</a>
 
 # Bibliotecas
 Para rodar este projeto é necessário instalar os pacotes:
